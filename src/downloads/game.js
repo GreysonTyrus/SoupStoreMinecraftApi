@@ -1,0 +1,48 @@
+const host = "localhost:3000"
+
+    let lua = [
+
+    "local start = http.get(\"http:\\\\"+host+"\\game\\\")",
+    "local headers = textutils.unserializeJSON(start.getResponseHeaders())",
+    "local startText = start.readAll()",
+    "start.close()",
+    "if start.getResponseCode() ~= 200 then ",
+    "   do return end",
+    "else",
+    "   print (startText)",
+    "   local id = headers[\"id\"]",
+    "   while(id ~= \"reset\")",
+    "   do",
+    "       local journey = http.get(\"http:\\\\"+host+"\\game\\\",{\"id\":id})",
+    "       headers = textutils.unserializeJSON(start.getResponseHeaders())",
+    "       local journeyText = journey.readAll()",
+    "       journey.close()",
+    "       id = headers[\"id\"]",
+    "       local input = read()",
+    "       if input == \"save\" then",
+    "           local save = http.get(\"http:\\\\"+host+"\\game\\save\\\",{\"id\":id})",
+    "           local saveString = save.readAll()",
+    "           save.close()",
+    "           local saveArray = input.split(\" \")",
+    "           local save2 = saveArray[1]",
+    "           local saveFile = io.open(save2,\"w\")",
+    "           saveFile.write(savestring)",
+    "           saveFile.close()",
+    "       else ",
+    "           journey = http.get(\"http:\\\\"+host+"\\game\\journey\\\" .. input .. \",{\"id\":id})",
+    "           journeyText = journey.readAll()",
+    "           journey.close()",
+    "           print(journeyText)",
+    "           ",
+    "           ",
+    "           ",
+    "       end",
+    "       ",
+    "       ",
+    "       ",
+    "       ",
+    "   end",
+    "end"
+    ]
+
+    module.exports = {gamefile:lua}
